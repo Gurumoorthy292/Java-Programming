@@ -1,0 +1,99 @@
+SOURCE CODE:
+
+package calculator;
+import java.util.Scanner;
+public class Calci {
+
+	public static void main(String[] args) {
+		char repeat;
+		do {
+			int n1,n2,choice;
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Calculator Program:");
+			System.out.println("\n 1.Add \n 2.Sub \n 3.Multiplication \n 4.Division");
+			System.out.println("Enter your choice of operation (1/2/3/4)4: ");
+			choice = sc.nextInt();
+			
+			
+			switch(choice) {
+			case 1:
+				System.out.println("Enter value 1: ");
+				n1=sc.nextInt();
+				System.out.println("Enter value 2: ");
+				n2=sc.nextInt();
+				System.out.println("Addition of " + n1 + " and " + n2 + " is " + (n1 + n2));
+				break;
+				
+			case 2:
+				System.out.println("Enter value 1: ");
+				n1=sc.nextInt();
+				System.out.println("Enter value 2: ");
+				n2=sc.nextInt();
+				System.out.println("Subtraction of " + n1 + " and "+ n2 + " is "+ (n1-n2));
+				break;
+			
+		    case 3:
+		    	System.out.println("Enter value 1: ");
+				n1=sc.nextInt();
+				System.out.println("Enter value 2: ");
+				n2=sc.nextInt();
+			System.out.println("Multiplication of " + n1 + " and " + n2 +" is "+ (n1*n2));
+			break;
+			
+		    case 4:
+		    	System.out.println("Enter value 1: ");
+				n1=sc.nextInt();
+				System.out.println("Enter value 2: ");
+				n2=sc.nextInt();
+			System.out.println("Division of" + n1 + " and " + n2 + "is " + (n1/n2));
+			break;
+			
+			default:
+				System.out.println("Enter the valid choice 1 to 4 ");
+				break;
+		}
+			System.out.println("Do you want to continue (Y / y) ");
+			repeat=sc.next().charAt(0);
+
+	}while(repeat=='y'  || repeat=='Y');
+		
+		if(repeat!='Y' || repeat!='y') {
+			System.out.println("Program terminated...");
+		}
+}
+}
+
+
+OUTPUT:
+
+Calculator Program:
+
+ 1.Add 
+ 2.Sub 
+ 3.Multiplication 
+ 4.Division
+Enter your choice of operation (1/2/3/4)4: 
+1
+Enter value 1: 
+2
+Enter value 2: 
+30
+Addition of 2 and 30 is 32
+Do you want to continue (Y / y) 
+y
+Calculator Program:
+
+ 1.Add 
+ 2.Sub 
+ 3.Multiplication 
+ 4.Division
+Enter your choice of operation (1/2/3/4)4: 
+3
+Enter value 1: 
+2
+Enter value 2: 
+3
+Multiplication of 2 and 3 is 6
+Do you want to continue (Y / y) 
+No
+Program terminated...
