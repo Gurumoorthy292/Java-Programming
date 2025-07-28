@@ -1,3 +1,8 @@
+4. Implement the following Student class in Java according to the given UML
+class diagram:
+
+SOURCE CODE:
+
 package Student;
 
 public class Student {
@@ -43,7 +48,7 @@ public void displayInfo() {
 
 
 
-
+SOURCE CODE:[Class for accessing Student class]
 
 package Student;
 
