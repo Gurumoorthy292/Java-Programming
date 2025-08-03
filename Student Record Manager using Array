@@ -1,0 +1,133 @@
+3. Write a Java program to perform the following operations on a set of students
+using arrays:
+• Input and Display:
+Accept N students’ roll numbers and names. Store them in parallel
+arrays. Display the roll numbers and names as entered.
+• Remove Duplicates:
+Remove any duplicate roll numbers and their corresponding names.
+Display the unique list of students.
+• Search for a Student:
+Prompt the user to enter a roll number to search. If found in the unique
+list, print the student’s name and index; otherwise, print -1.
+• Display in Reverse Order:
+Display the unique students’ roll numbers and names in reverse order.
+
+SOURCE CODE:
+
+package Management;
+import java.util.Scanner;
+public class StudentManager {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.print("Enter the number of Students: ");
+		int n=sc.nextInt();
+		int[] Roll=new int[n];
+		String  Name[]=new String[n];
+		
+		//Getting the inputs
+		
+		for(int i=0;i<n;i++) {
+			System.out.print("Enter the Roll No: ");
+			Roll[i]=sc.nextInt();
+			sc.nextLine();
+			System.out.print("Enter the Name: ");
+			Name[i]=sc.nextLine();
+		}
+		
+		//Displaying the output
+		System.out.println("\n--- Entered Students ---");
+		for(int i=0;i<n;i++) {
+			System.out.println("Roll No: "+Roll[i]+"-> "+"Name: "+Name[i]);
+		}
+		System.out.println();
+		
+		//Removing the duplicates
+		
+		  int uniqueCount = 0;
+	        for (int i = 0; i < n; i++) {
+	            boolean duplicate = false;
+	            for (int j = 0; j < uniqueCount; j++) {
+	                if (Roll[i] == Roll[j]) {
+	                    duplicate = true;
+	                    break;
+	                }
+	            }
+	            if (!duplicate) {
+	                Roll[uniqueCount] = Roll[i];
+	                Name[uniqueCount] = Name[i];
+	                uniqueCount++;
+	            }
+	        }
+	        
+	        //Displaying Unique list of students
+	        
+	        System.out.println("\n--- Unique Students ---");
+	        for(int i=0;i<uniqueCount;i++) {
+	        	System.out.println("Roll No: "+Roll[i]+"-> "+"Name: "+Name[i]);
+	        }
+	        System.out.println();
+	        
+	        System.out.print("Enter roll no to search: ");
+	        int a=sc.nextInt();
+	        boolean search=false;
+	        for(int i=0;i<uniqueCount;i++) {
+	        	if(a==Roll[i]) {
+	        		System.out.println(a+ " Found at "+"index "+i);
+	        		search=true;
+	        		break;
+	        	}
+	        }
+	        if(!search) {
+	        	System.out.println(-1);
+	        }
+	        System.out.println();
+	        
+	        //Displaying in Reverse order
+	        
+	        System.out.println("\n--- Students in Reverse Order ---");
+	        for(int i=uniqueCount-1;i>=0;i--) {
+	        	System.out.println("Roll No: "+Roll[i]+"-> "+"Name: "+Name[i]);
+	        }
+	        	sc.close();
+	}	
+}
+
+
+OUTPUT:
+
+Enter the number of Students: 5
+Enter the Roll No: 1
+Enter the Name: Gurumoorthy
+Enter the Roll No: 2
+Enter the Name: Naruto Uzumaki
+Enter the Roll No: 3
+Enter the Name: Itachi Uchiha
+Enter the Roll No: 2
+Enter the Name: Naruto Uzumaki
+Enter the Roll No: 5
+Enter the Name: Kakashi Hatake
+
+--- Entered Students ---
+Roll No: 1-> Name: Gurumoorthy
+Roll No: 2-> Name: Naruto Uzumaki
+Roll No: 3-> Name: Itachi Uchiha
+Roll No: 2-> Name: Naruto Uzumaki
+Roll No: 5-> Name: Kakashi Hatake
+
+
+--- Unique Students ---
+Roll No: 1-> Name: Gurumoorthy
+Roll No: 2-> Name: Naruto Uzumaki
+Roll No: 3-> Name: Itachi Uchiha
+Roll No: 5-> Name: Kakashi Hatake
+
+Enter roll no to search: 2
+2 Found at index 1
+
+--- Students in Reverse Order ---
+Roll No: 5-> Name: Kakashi Hatake
+Roll No: 3-> Name: Itachi Uchiha
+Roll No: 2-> Name: Naruto Uzumaki
+Roll No: 1-> Name: Gurumoorthy
