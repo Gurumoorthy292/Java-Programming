@@ -1,0 +1,118 @@
+1. Implement Employee and Manager classes using single inheritance. Write a
+TestManager class to create a Manager object and display all properties. Invoke
+both inherited and own methods to demonstrate full functionality.
+
+SOURCE CODE:
+
+package Inheritance;
+
+public class Employee {
+
+	private int id;
+	private String name;
+	private String email;
+	private double salary;
+	
+	public Employee(int id,String name,String email,double salary) {
+		
+		this.id=id;
+		this.name=name;
+		this.email=email;
+		this.salary=salary;
+
+	}
+		public int getId() {
+			return this.id;
+		}
+		
+		public String getName() {
+			return this.name;
+		}
+
+		public String getEmail() {
+			return this.email;
+		}
+		
+		public double getSalary() {
+		        return this.salary;
+		    }
+
+		public void raiseSalary(double percent) {
+		        salary += salary * percent / 100;
+		    }
+
+		 public String toString() {
+		        return "Employee[id=" +this.id + ", name=" + this.name + ", email=" + this.email + ", salary=" + this.salary + "]";
+		    }
+}
+
+class Manager extends Employee {
+    private String department;
+    private int teamSize;
+    private double bonus;
+    private String designation;
+
+    public Manager(int id, String name, String email, double salary,
+                   String department, int teamSize, double bonus, String designation) {
+        super(id, name, email, salary);
+        this.department = department;
+        this.teamSize = teamSize;
+        this.bonus = bonus;
+        this.designation = designation;
+    }
+
+    public String getDepartment() {
+        return this.department;
+    }
+
+    public int getTeamSize() {
+        return this.teamSize;
+    }
+
+    public double getBonus() {
+        return this.bonus;
+    }
+
+    public String getDesignation() {
+        return this.designation;
+    }
+
+    public void conductMeeting() {
+        System.out.println("Conducting a meeting for the " + department + " department.");
+    }
+
+    public String toString() {
+        return "Manager[" + super.toString() +
+               ", dept=" + department + ", teamSize=" + teamSize +
+               ", bonus=" + bonus + ", designation=" + designation + "]";
+    }
+}
+
+
+TestManager.java:
+
+
+package Inheritance;
+
+public class TestManager {
+
+	public static void main(String[] args) {
+		Manager M=new Manager(1,"Guru","Guru@gmail.com",50000,"ECE",4,55000.0,"Employee");
+		System.out.println(M);
+		
+		System.out.println(M.getName());
+		System.out.println(M.getEmail());
+		System.out.println(M.getDepartment());
+		/*System.out.println(M.);
+		System.out.println(M.);
+		System.out.println(M.);
+		*/
+	}
+
+}
+OUTPUT:
+
+Manager[Employee[id=1, name=Guru, email=Guru@gmail.com, salary=50000.0], dept=ECE, teamSize=4, bonus=55000.0, designation=Employee]
+Guru
+Guru@gmail.com
+ECE
