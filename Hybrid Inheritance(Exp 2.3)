@@ -1,0 +1,154 @@
+3. Implement the following Hybrid Inheritance by creating necessary classes.
+Write a Test class to invoke both inherited and own methods to demonstrate full
+functionality.
+
+SOURCE CODE:
+
+package Inheritance;
+
+public class Media {
+    protected String title;
+    protected String author;
+    protected String publicationDate;
+
+    public Media(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    public Media(String title, String author, String publicationDate) {
+        this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
+    }
+
+    public void displayDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Publication Date: " + publicationDate);
+    }
+} 
+
+
+class Book extends Media {
+    private String genre;
+    private int pageCount;
+
+    public Book(String title, String author, String genre, int pageCount) {
+        super(title, author);
+        this.genre = genre;
+        this.pageCount = pageCount;
+    }
+    
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Genre: " + genre);
+        System.out.println("Page Count: " + pageCount);
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+}
+
+class Magazine extends Media {
+    private int issueNumber;
+    private String publisher;
+
+    public Magazine(String title, String author, String publicationDate, int issueNumber, String publisher) {
+        super(title, author, publicationDate);
+        this.issueNumber = issueNumber;
+        this.publisher = publisher;
+    }
+
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Issue Number: " + issueNumber);
+        System.out.println("Publisher: " + publisher);
+    }
+
+    public int getIssueNumber() {
+        return issueNumber;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+}
+
+class Newspaper extends Media {
+    private String edition;
+    private String publisher;
+
+    public Newspaper(String title, String author, String publicationDate, String edition, String publisher) {
+        super(title, author, publicationDate);
+        this.edition = edition;
+        this.publisher = publisher;
+    }
+
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Edition: " + edition);
+        System.out.println("Publisher: " + publisher);
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+}
+
+//TestMedia.java
+
+package Inheritance;
+
+public class TestMedia {
+
+	public static void main(String[] args) {
+	    Book book = new Book("Naruto", "Kishimoto", "Anime", 200);
+	    Magazine magazine = new Magazine("National Geographic", "Guru", "August 2025", 202, "Moorthy");
+	    Newspaper newspaper = new Newspaper("The Hindu", "Naruto", "August 11, 2025", "Morning", "Anime");
+
+	    System.out.println("=== Book Details ===");
+	    book.displayDetails();
+
+	    System.out.println("\n=== Magazine Details ===");
+	        magazine.displayDetails();
+
+	    System.out.println("\n=== Newspaper Details ===");
+	        newspaper.displayDetails();
+	}
+
+}
+
+
+OUTPUT:
+
+=== Book Details ===
+Title: Naruto
+Author: Kishimoto
+Publication Date: null
+Genre: Anime
+Page Count: 200
+
+=== Magazine Details ===
+Title: National Geographic
+Author: Guru
+Publication Date: August 2025
+Issue Number: 202
+Publisher: Moorthy
+
+=== Newspaper Details ===
+Title: The Hindu
+Author: Naruto
+Publication Date: August 11, 2025
+Edition: Morning
+Publisher: Anime
+
