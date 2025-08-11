@@ -7,9 +7,9 @@ SOURCE CODE:
 package Inheritance;
 
 public class Media {
-    protected String title;
-    protected String author;
-    protected String publicationDate;
+     private String title;
+    private String author;
+    private String publicationDate;
 
     public Media(String title, String author) {
         this.title = title;
