@@ -1,0 +1,93 @@
+Develop programs incorporating packages, abstract classes, and interfaces to
+structure code modularly and enforce abstraction.
+
+1. Write a Java program to implement the following relationship and create a
+Main class to invoke all the methods.
+
+SOURCE CODE;
+
+package Data_abstraction;
+
+abstract class Employee {
+    private String name;
+    private int employeeId;
+    private String designation;
+    
+    public Employee(String name,int employeeId, String designation) {
+    	this.name=name;
+    	this.employeeId=employeeId;
+    	this.designation=designation;
+    }
+    
+    public void displayInfo() {
+    	 System.out.println("Name: " + name);
+         System.out.println("Employee ID: " + employeeId);
+         System.out.println("Designation: " + designation);
+    }
+    public abstract double calculateSalary();
+}
+
+class FullTimeEmployee extends Employee{
+	private double monthlySalary;
+	
+	public FullTimeEmployee(String name, int employeeId, String designation, double monthlySalary) {
+        super(name, employeeId, designation);
+        this.monthlySalary = monthlySalary;
+    }
+	@Override
+	public double calculateSalary() {
+		return monthlySalary;
+	}
+}
+
+class PartTimeEmployee extends Employee {
+    private double hourlyRate;
+    private int hoursWorked;
+
+    public PartTimeEmployee(String name, int employeeId, String designation, double hourlyRate, int hoursWorked) {
+        super(name, employeeId, designation);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+   @Override
+    public double calculateSalary() {
+        return hourlyRate * hoursWorked;
+    }
+}
+
+
+// EmployeeTest.java:
+
+package Data_abstraction;
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        FullTimeEmployee s1 = new FullTimeEmployee("Guru", 315, "ECE", 580000.0);
+        PartTimeEmployee s2 = new PartTimeEmployee("Moorthy", 316, "Placement", 12.5, 10);
+
+        System.out.println("Full-Time Employee Details:");
+        s1.displayInfo();
+        System.out.println("Salary: " + s1.calculateSalary());
+        System.out.println();
+
+        System.out.println("Part-Time Employee Details:");
+        s2.displayInfo();
+        System.out.println("Salary: " + s2.calculateSalary());
+    }
+}
+
+
+OUTPUT :
+
+Full-Time Employee Details:
+Name: Guru
+Employee ID: 315
+Designation: ECE
+Salary: 580000.0
+
+Part-Time Employee Details:
+Name: Moorthy
+Employee ID: 316
+Designation: Placement
+Salary: 125.0
