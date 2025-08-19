@@ -1,0 +1,164 @@
+2. Identify the relationship between Course, OnlineCourse, and OfflineCourse
+from the given class diagram. Implement all three classes using hierarchical
+inheritance. Write a TestCourse class to create objects and invoke class-
+specific methods to demonstrate functionality.
+
+SOURCE CODE:
+
+package Inheritance;
+
+public class Course {
+	
+	private String courseld;
+	private String title;
+	private String instructor;
+	private int duration;
+	
+	public Course(String courseld,String title, String instructor, int duration) {
+		this.courseld=courseld;
+		this.title=title;
+		this.instructor=instructor;
+		this.duration=duration;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getInstructor() {
+		return instructor;
+	}
+	
+	public int getDuration() {
+		return duration;
+	}
+	
+	public String toString() {
+		return "Course[Courseld: " +courseld+",Title: "+ title+",Instructor: "+instructor+",Duration: "+duration+"]";
+	}
+	
+	public void showInfo() {
+		System.out.println("Courseld: "+courseld);
+		System.out.println("Title: "+ title);
+		System.out.println("Instructor: "+ instructor);
+		System.out.println("Duration: "+duration);
+	}
+	
+}
+
+class OnlineCourse extends Course {
+	private String platform;
+	private int accessDays;
+	private double videoHours;
+	private boolean hasCertificate;
+	
+	public OnlineCourse(String courseld,String title, String instructor, int duration, String platform,
+			int accessDays,double videoHours,boolean hasCertificate) {
+		super(courseld,title,instructor,duration);
+		this.platform=platform;
+		this.accessDays=accessDays;
+		this.videoHours=videoHours;
+		this.hasCertificate=hasCertificate;
+	}
+	
+	public void showPlatform() {
+		super.showInfo();
+		System.out.println("Platform "+platform);
+		System.out.println("accessDays: "+accessDays);
+		System.out.println("videoHours :"+videoHours);
+	}
+	
+	public int getAcessDays() {
+		return accessDays;
+	}
+	
+	public boolean hasCert() {
+        return hasCertificate;
+    }
+
+    public String toString() {
+        return super.toString() + " | OnlineCourse{" +
+                "platform='" + platform + '\'' +
+                ", accessDays=" + accessDays +
+                ", videoHours=" + videoHours +
+                ", hasCertificate=" + hasCertificate +
+                '}';
+    }
+}
+
+class OfflineCourse extends Course {
+    private String classroom;
+    private String schedule;
+    private int seatLimit;
+    private boolean materialsGiven;
+
+    public OfflineCourse(String courseId, String title, String instructor, int duration,
+                         String classroom, String schedule, int seatLimit, boolean materialsGiven) {
+        super(courseId, title, instructor, duration);
+        this.classroom = classroom;
+        this.schedule = schedule;
+        this.seatLimit = seatLimit;
+        this.materialsGiven = materialsGiven;
+    }
+
+    public void showClassroom() {
+    	super.showInfo();
+        System.out.println("Classroom: " + classroom + ", Schedule: " + schedule);
+    }
+
+    public boolean hasMaterials() {
+        return materialsGiven;
+    }
+
+    public String toString() {
+        return super.toString() + " | OfflineCourse{" +
+                "classroom='" + classroom + '\'' +
+                ", schedule='" + schedule + '\'' +
+                ", seatLimit=" + seatLimit +
+                ", materialsGiven=" + materialsGiven +
+                '}';
+    }
+}
+
+
+//TestCourse.java
+
+package Inheritance;
+
+public class TestCourse {
+
+	public static void main(String[] args) {
+		OnlineCourse c1 = new OnlineCourse("Java","UML","Arthi",3,"ChatGPT",30,10,true);
+		System.out.println(c1);
+		c1.showPlatform();
+		//System.out.println(c1.getDuration());
+
+		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~Course Switch~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		
+		OfflineCourse c2 = new OfflineCourse("Python","Code","Arthi",5,"Google","Morning",3,false);
+		System.out.println(c2);
+		c2.showClassroom();
+		System.out.println();
+	
+	}
+}
+
+
+OUTPUT:
+Course[Courseld: Java,Title: UML,Instructor: Arthi,Duration: 3] | OnlineCourse{platform='ChatGPT', accessDays=30, videoHours=10.0, hasCertificate=true}
+Courseld: Java
+Title: UML
+Instructor: Arthi
+Duration: 3
+Platform ChatGPT
+accessDays: 30
+videoHours :10.0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~Course Switch~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Course[Courseld: Python,Title: Code,Instructor: Arthi,Duration: 5] | OfflineCourse{classroom='Google', schedule='Morning', seatLimit=3, materialsGiven=false}
+Courseld: Python
+Title: Code
+Instructor: Arthi
+Duration: 5
+Classroom: Google, Schedule: Morning
