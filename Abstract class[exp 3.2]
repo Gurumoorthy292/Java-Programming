@@ -1,0 +1,140 @@
+package Abstraction;
+abstract class Course {
+    protected String courseName;
+    protected String instructor;
+    protected int durationWeeks;
+
+    public Course(String courseName, String instructor, int durationWeeks) {
+        this.courseName = courseName;
+        this.instructor = instructor;
+        this.durationWeeks = durationWeeks;
+    }
+
+    public void showCourseDetails() {
+        System.out.println("Course: " + courseName);
+        System.out.println("Instructor: " + instructor);
+        System.out.println("Duration (weeks): " + durationWeeks);
+    }
+
+    // Abstract method
+    public abstract void calculateFee();
+}
+
+// Derived Class: OnlineCourse
+class OnlineCourse extends Course {
+    private String platform;
+    private double baseFee;
+
+    public OnlineCourse(String courseName, String instructor, int durationWeeks, String platform, double baseFee) {
+        super(courseName, instructor, durationWeeks);
+        this.platform = platform;
+        this.baseFee = baseFee;
+    }
+
+    @Override
+    public void calculateFee() {
+        System.out.println("Online Course Fee: " + baseFee);
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+}
+
+// Derived Class: OfflineCourse
+class OfflineCourse extends Course {
+    private String location;
+    private double materialCost;
+    private double baseFee;
+
+    public OfflineCourse(String courseName, String instructor, int durationWeeks, String location, double baseFee, double materialCost) {
+        super(courseName, instructor, durationWeeks);
+        this.location = location;
+        this.baseFee = baseFee;
+        this.materialCost = materialCost;
+    }
+
+    @Override
+    public void calculateFee() {
+        System.out.println("Offline Course Fee: " + (baseFee + materialCost));
+    }
+
+    public String getLocation() {
+        return location;
+    }
+}
+
+// Derived Class: HybridCourse
+class HybridCourse extends Course {
+    private String platform;
+    private String location;
+    private double baseFee;
+    private double extraWorkshopFee;
+
+    public HybridCourse(String courseName, String instructor, int durationWeeks,
+                        String platform, String location, double baseFee, double extraWorkshopFee) {
+        super(courseName, instructor, durationWeeks);
+        this.platform = platform;
+        this.location = location;
+        this.baseFee = baseFee;
+        this.extraWorkshopFee = extraWorkshopFee;
+    }
+
+    @Override
+    public void calculateFee() {
+        System.out.println("Hybrid Course Fee: " + (baseFee + extraWorkshopFee));
+    }
+
+    public String getMode() {
+        return "Hybrid (Online: " + platform + ", Offline: " + location + ")";
+    }
+}
+
+//Test class
+
+package Abstraction;
+
+public class TestCourses {
+ public static void main(String[] args) {
+	 OnlineCourse online = new OnlineCourse("Java Programming", "Arthi", 6, "Udemy", 5000);
+	 OfflineCourse offline = new OfflineCourse("Python Programming", "Naruto", 8, "Coimbatore", 8000, 2000);
+	 HybridCourse hybrid = new HybridCourse("C Programming", "Gurumoorthy", 10, "Coursera", "College", 10000, 3000);
+
+     online.showCourseDetails();
+     online.calculateFee();
+     System.out.println("Platform: "+online.getPlatform());
+
+     System.out.println("----------------------------");
+
+     offline.showCourseDetails();
+     offline.calculateFee();
+     System.out.println("Location: "+offline.getLocation());
+
+     System.out.println("----------------------------"); 
+
+     hybrid.showCourseDetails();
+     hybrid.calculateFee();
+     System.out.println("Mode: "+hybrid.getMode());
+ }
+}
+
+
+OUTPUT:
+
+Course: Java Programming
+Instructor: Arthi
+Duration (weeks): 6
+Online Course Fee: 5000.0
+Platform: Udemy
+----------------------------
+Course: Python Programming
+Instructor: Naruto
+Duration (weeks): 8
+Offline Course Fee: 10000.0
+Location: Coimbatore
+----------------------------
+Course: C Programming
+Instructor: Gurumoorthy
+Duration (weeks): 10
+Hybrid Course Fee: 13000.0
+Mode: Hybrid (Online: Coursera, Offline: College)
