@@ -1,0 +1,99 @@
+Implement the Student and Address classes demonstrating a has-a
+(composition) relationship. Write a TestStudent class to create a Student object
+with address details and display all information.
+
+SOURCE CODE:
+
+package Inheritance;
+public class Address {
+    private String street;
+    private String city;
+    private String state;
+    private String pincode;
+
+    public Address(String street, String city, String state, String pincode) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.pincode = pincode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getPincode() {
+
+        return pincode;
+    }
+
+    @Override
+    public String toString() {
+        return street + ", " + city + ", " + state + " - " + pincode;
+    }
+}
+
+class Student {
+ private int id;
+ private String name;
+ private String course;
+ private Address address; // has-a relationship
+
+ public Student(int id, String name, String course, Address address) {
+     this.id = id;
+     this.name = name;
+     this.course = course;
+     this.address = address;
+ }
+
+ public int getId() {
+     return id;
+ }
+
+ public String getName() {
+     return name;
+ }
+
+ public String getCourse() {
+     return course;
+ }
+
+ public Address getAddress() {
+     return address;
+ }
+
+ @Override
+ public String toString() {
+     return "Student ID: " + id + "\n"
+          + "Name: " + name + "\n"
+          + "Course: " + course + "\n"
+          + "Address: " + address.toString();
+ }
+}
+
+TestStudent.java: //Main Class
+package Inheritance;
+public class TestStudent {
+    public static void main(String[] args) {
+        
+
+        Address addr = new Address("Uthangarai", "Krishnagiri", "Tamil Nadu", "635306");
+        Student student = new Student(315, "Gurumoorthy", "Java", addr);
+        System.out.println(student);
+    }
+}
+
+OUTPUT:
+
+Student ID: 315
+Name: Gurumoorthy
+Course: Java
+Address: Uthangarai, Krishnagiri, Tamil Nadu - 635306
