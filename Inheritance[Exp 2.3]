@@ -4,7 +4,7 @@ functionality.
 
 SOURCE CODE:
 
-package Inheritance;
+package Inheritance; 
 
 public class Media {
      private String title;
