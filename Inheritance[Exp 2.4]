@@ -4,7 +4,7 @@ using methods of String and StringBuffer class:
 • Display the character at the 5th position.
 • Extract a part of the string from character 6 to 12 and print it.
 • Convert the string to all uppercase and all lowercase.
-• Remove any leading and trailing spaces from the string.
+• Remove any leading and trailing spaces from the string. 
 • Compare the string with another string both case-sensitively and case-
 insensitively.
 • Check if the string contains a specific word (e.g., "Fun").
