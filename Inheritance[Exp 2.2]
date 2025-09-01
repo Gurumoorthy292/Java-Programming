@@ -1,7 +1,7 @@
 2. Identify the relationship between Course, OnlineCourse, and OfflineCourse
 from the given class diagram. Implement all three classes using hierarchical
 inheritance. Write a TestCourse class to create objects and invoke class-
-specific methods to demonstrate functionality.
+specific methods to demonstrate functionality. 
 
 SOURCE CODE:
 
