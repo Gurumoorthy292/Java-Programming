@@ -1,0 +1,113 @@
+package Interface;
+
+public interface Employee {
+String Company_Name="Guru company";
+void getDetails();
+void calculateSalary(double basicPay, double bonus, double taxRate);
+void showLeaveBalance();
+}
+
+// Sub class
+
+package Interface;
+
+public class USEmployee implements Employee {
+	  String name;
+	    int employeeId;
+	    int paidLeavesPerYear;
+	    int workingDaysPerWeek;
+	    
+	    public USEmployee(String name, int employeeId, int paidLeavesPerYear, int workingDaysPerWeek) {
+	    	   this.name = name;
+	           this.employeeId = employeeId;
+	           this.paidLeavesPerYear = paidLeavesPerYear;
+	           this.workingDaysPerWeek = workingDaysPerWeek;
+	    }
+	    public void getDetails() {
+	    	System.out.println("Name: " + name);
+	        System.out.println("Employee ID: " + employeeId);
+	        System.out.println("Paid Leaves Per Year: " + paidLeavesPerYear);
+	        System.out.println("Working Days Per Week: " + workingDaysPerWeek);
+	    }
+	    public void calculateSalary(double basicPay, double bonus, double taxRate) {
+	        double finalSalary = (basicPay + bonus) - (basicPay * taxRate / 100);
+	        System.out.println("Final Salary (USD): " + finalSalary);
+	    }
+	    public void showLeaveBalance() {
+	         System.out.println("Leave Balance (US Employee): " + paidLeavesPerYear + " days");
+
+	    }
+}
+
+class IndianEmployee implements Employee{
+	String name;
+    int employeeId;
+    int paidLeavesPerYear;
+    int workingDaysPerWeek;
+
+   public IndianEmployee(String name, int employeeId, int paidLeavesPerYear, int workingDaysPerWeek) {
+        this.name = name;
+        this.employeeId = employeeId;
+        this.paidLeavesPerYear = paidLeavesPerYear;
+        this.workingDaysPerWeek = workingDaysPerWeek;
+    }
+   
+   public void getDetails() {
+   	System.out.println("Name: " + name);
+       System.out.println("Employee ID: " + employeeId);
+       System.out.println("Paid Leaves Per Year: " + paidLeavesPerYear);
+       System.out.println("Working Days Per Week: " + workingDaysPerWeek);
+   }
+   public void calculateSalary(double basicPay, double bonus, double taxRate) {
+       double finalSalary = (basicPay + bonus) - (basicPay * taxRate / 100);
+       System.out.println("Final Salary (USD): " + finalSalary);
+   }
+   public void showLeaveBalance() {
+       System.out.println("Leave Balance (US Employee): " + paidLeavesPerYear + " days");
+
+  }
+}
+
+//Test class
+
+package Interface;
+
+public class TestEmployee {
+	public static void main(String[] args) {
+        Employee usEmp = new USEmployee("GURU", 315, 15, 5);
+        Employee indEmp = new IndianEmployee("Moorthy", 201, 20, 6);
+
+        System.out.println("US Employee Details: ");
+        System.out.println();
+        usEmp.getDetails();
+        usEmp.calculateSalary(2000, 200, 20);
+        usEmp.showLeaveBalance();
+
+        System.out.println();
+        System.out.println("Indian Employee Details: ");
+        System.out.println();
+        indEmp.getDetails();
+        indEmp.calculateSalary(3000, 300, 30);
+        indEmp.showLeaveBalance();
+ }
+}
+
+OUTPUT:
+
+US Employee Details: 
+
+Name: GURU
+Employee ID: 315
+Paid Leaves Per Year: 15
+Working Days Per Week: 5
+Final Salary (USD): 1800.0
+Leave Balance (US Employee): 15 days
+
+Indian Employee Details: 
+
+Name: Moorthy
+Employee ID: 201
+Paid Leaves Per Year: 20
+Working Days Per Week: 6
+Final Salary (USD): 2400.0
+Leave Balance (US Employee): 20 days
