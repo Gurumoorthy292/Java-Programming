@@ -16,7 +16,7 @@ abstract class Course {
         System.out.println("Duration (weeks): " + durationWeeks);
     }
 
-    // Abstract method
+// Abstract method
     public abstract void calculateFee();
 }
 
