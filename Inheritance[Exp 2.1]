@@ -1,7 +1,7 @@
 1. Implement Employee and Manager classes using single inheritance. Write a
 TestManager class to create a Manager object and display all properties. Invoke
 both inherited and own methods to demonstrate full functionality.
-
+ 
 SOURCE CODE:
 
 package Inheritance;
