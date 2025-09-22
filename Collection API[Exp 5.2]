@@ -1,0 +1,117 @@
+Source Code:
+
+package Exp_5;
+
+public class Student {
+	private int rollNo;
+	private String name;
+	private int year;
+	private double cgpa;
+	
+	public Student(int rollNo, String name,int year, double cgpa) {
+		super();
+		this.rollNo = rollNo;
+		this.name = name;
+		this.year = year;
+		this.cgpa = cgpa;
+	}
+
+	public int getRollNo() {
+		return rollNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+
+	public double getCgpa() {
+		return cgpa;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
+	public void setCgpa(double cgpa) {
+		this.cgpa = cgpa;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [rollNo=" + rollNo + ", name=" + name + ", year=" + year + ", cgpa=" + cgpa + "]";
+	}
+}
+
+//Main Class
+
+package Exp_5;
+import java.util.*;
+
+class sortByName implements Comparator<Student> {
+	
+	public int compare(Student s1,Student s2){
+		return s1.getName().compareTo(s2.getName());
+	}
+	
+}
+
+class sortByCgpa implements Comparator<Student> {
+	
+	public int compare(Student s1,Student s2){
+		return Double.compare(s1.getCgpa(), s2.getCgpa());
+	}
+}
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		 Set<Student> students = new HashSet<>();
+		 
+		 students.add(new Student(101, "Guru", 2, 8.9));
+	     students.add(new Student(102, "Moorthy", 3, 7.5));
+	     students.add(new Student(103, "Faali", 2, 9.1));
+	     students.add(new Student(104, "Naruto", 1, 6.8));
+	     students.add(new Student(105, "Kailash", 3, 9.5));
+	     students.add(new Student(106, "Sasuke", 2, 8.2));
+	     students.add(new Student(101, "Guru", 2, 8.9));
+	     
+	     System.out.println("\nAll Students:");
+	     for (Student s : students) {
+	         System.out.println(s);
+	     }
+	     
+	     //Sort the Students based on names
+	     List <Student> listByName = new ArrayList<>(students);
+	     Collections.sort(listByName, new sortByName());
+	     
+	     System.out.println("\nAfter sorting alphabetically: ");
+	     for (Student s : listByName) {
+	         System.out.println(s);
+	     }
+	     
+	     //To display the TOP three Students by CGPA
+	     
+	     List <Student> listByCgpa = new ArrayList<>(students);
+	     Collections.sort(listByCgpa, new sortByCgpa());
+	     System.out.println();
+	     System.out.println("To 3 Students based on CGPA: ");
+	     for(int i=0;i<Math.min(3, listByCgpa.size());i++){
+	    	 System.out.println(listByCgpa.get(i));
+	     }
+	     
+	     //To display the particular year
+	     System.out.println();
+	     System.out.println("Display the particular year Students: ");
+	     int targetYear = 2;
+	     for(Student s: students){
+	    	 if(targetYear == s.getYear()){
+	    		 System.out.println(s);
+	    	 }
+	     }
+	}
+}
