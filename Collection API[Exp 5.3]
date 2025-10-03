@@ -1,0 +1,181 @@
+package Exp_5_3;
+
+public class StationeryItem {
+	private String name;
+	private double price;
+	
+	public StationeryItem(String name, double price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return name +"-> $" +price;
+	}
+}
+
+//Main Class
+
+package Exp_5_3;
+
+import java.util.*;
+
+class SortByName implements Comparator<StationeryItem>
+{
+	@Override
+	public int compare(StationeryItem s1, StationeryItem s2)
+	{
+		return s1.getName().compareTo(s2.getName());//ascending
+	}
+}
+
+class SortByPrice implements Comparator<StationeryItem>
+{
+	@Override
+	public int compare(StationeryItem s1, StationeryItem s2)
+	{
+		return Double.compare(s2.getPrice(), s1.getPrice());//descending
+	}
+}
+public class StationeryManager {
+
+	public static void main(String[] args) {
+		//Store items in a Map
+			Map <String,Double> map = new HashMap<>();
+			map.put("Pen", 10.0);
+			map.put("Notebook",45.0 );
+			map.put("Pencil", 5.0);
+			map.put("Marker", 25.0);
+			map.put("Eraser", 8.0);
+			map.put("Ruler", 15.0);
+			map.put("Highlighter", 30.0);
+			map.put("Stapler", 50.0);
+			
+			//Display all items,prices, and pairs
+			System.out.println("All Items: "+ map.keySet());
+			System.out.println("All Prices: "+ map.values());
+			System.out.println("All Item - Prices pairs: "+ map);
+			
+			//Check Marker availability
+			System.out.println("\nIs 'Marker' available? " + map.containsKey(map));
+			
+			//Check if any items cost >=50
+			boolean itemCost = false;
+			for(double price: map.values()) 
+			{
+				if(price >= 50)
+				{
+					itemCost = true;
+					break;
+				}
+			}
+			System.out.println("\nAny items cost 50 or more? "+itemCost);
+			
+			//Increse theNoteBook Price by 10%
+			map.put("Notebook", map.get("Notebook")*1.10);
+			//Remove Ruler
+			map.remove("Ruler");
+			System.out.println("\n====After Increasing the 'Notebook' price and Removing 'Ruler'=====\n");
+			System.out.println(map);
+			
+			//Converting Map to list
+			List<StationeryItem> itemList = new ArrayList<>();
+			for(Map.Entry<String, Double> entry: map.entrySet())
+			{
+				itemList.add(new StationeryItem(entry.getKey(),entry.getValue()));
+			}
+			
+			//Sort by Names
+			Collections.sort(itemList, new SortByName());
+			System.out.println("\n====Items in Ascending order of Names====\n");
+			for (StationeryItem list: itemList)
+			{
+				System.out.println(list);
+			}
+			
+			//Sort by prices
+			Collections.sort(itemList, new SortByPrice());
+			System.out.println("\n====Items in Descending order of Prices====\n");
+			for (StationeryItem list: itemList)
+			{
+				System.out.println(list);
+			}
+			
+			//Find cheapest and costliest items
+			double minPrice = Collections.min(map.values());
+			double maxPrice = Collections.max(map.values());
+			
+			System.out.println("\n====Cheapest item====");
+			for (StationeryItem cheap: itemList)
+			{
+				if(cheap.getPrice()==minPrice)
+				{
+					System.out.println(cheap);
+				}
+			}
+			
+			System.out.println("\n====Costiest item====");
+			for (StationeryItem cost: itemList)
+			{
+				if(cost.getPrice()==maxPrice)
+				{
+					System.out.println(cost);
+				}
+			}
+	}
+}
+
+
+OUTPUT:
+
+All Items: [Notebook, Pen, Pencil, Marker, Stapler, Ruler, Eraser, Highlighter]
+All Prices: [45.0, 10.0, 5.0, 25.0, 50.0, 15.0, 8.0, 30.0]
+All Item - Prices pairs: {Notebook=45.0, Pen=10.0, Pencil=5.0, Marker=25.0, Stapler=50.0, Ruler=15.0, Eraser=8.0, Highlighter=30.0}
+
+Is 'Marker' available? false
+
+Any items cost 50 or more? true
+
+====After Increasing the 'Notebook' price and Removing 'Ruler'=====
+
+{Notebook=49.50000000000001, Pen=10.0, Pencil=5.0, Marker=25.0, Stapler=50.0, Eraser=8.0, Highlighter=30.0}
+
+====Items in Ascending order of Names====
+
+Eraser-> $8.0
+Highlighter-> $30.0
+Marker-> $25.0
+Notebook-> $49.50000000000001
+Pen-> $10.0
+Pencil-> $5.0
+Stapler-> $50.0
+
+====Items in Descending order of Prices====
+
+Stapler-> $50.0
+Notebook-> $49.50000000000001
+Highlighter-> $30.0
+Marker-> $25.0
+Pen-> $10.0
+Eraser-> $8.0
+Pencil-> $5.0
+
+====Cheapest item====
+Pencil-> $5.0
+
+====Costiest item====
+Stapler-> $50.0
