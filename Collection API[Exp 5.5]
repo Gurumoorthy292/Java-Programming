@@ -1,0 +1,59 @@
+5. Write a Java program for the statements given below:
+
+
+• Create a class Employee with attributes id, name, department, and salary.
+Include a parameterized constructor to assign values, getter and setter
+methods, and a toString() method.
+• Store eight employees in a list and perform the following operations using
+Lambda Expressions, Functional Interfaces, and the Stream API::
+• Display employees from the “IT” department with a salary above Rs. 40,000.
+• Display the top five employees with the highest salaries.
+• Display only the id and name of all employees.
+• Display the average salary of employees in each department.
+• Display the employee who has the highest salary.
+• Separate employees into two groups: those earning Rs. 60,000 or more and
+those earning less.
+• Display the highest, lowest, average, and total salary of all employees.
+• Ignore employees with salary zero or less, and show how many were
+ignored.
+
+SOURCE CODE:
+
+package Exp_5_5;
+
+public class Employee {
+	
+	private int id;
+	private String name;
+	private String dept;
+	private double salary;
+	
+	public Employee(int id, String name, String dept, double salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.dept = dept;
+		this.salary = salary;
+	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	
+}
