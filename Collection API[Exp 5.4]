@@ -1,0 +1,144 @@
+Write a Java program to analyze sales amounts using a list of numbers.
+Sales values (in ₹): 1200, 4500, 3200, 2200, 5600, 7800, 3100, 1500, 8900,
+4000. Perform the following operations using Lambda Expressions and
+Functional Interfaces:
+• Stores all sales values in an ArrayList<Integer>.
+• Uses a Predicate<Integer> to check if a sales amount is greater than
+₹4000, and prints all such amounts using a loop.
+• Sorts the list in descending order and prints the top 5 highest amounts.
+• Uses a Consumer<Integer> to print each sales amount in the format: Sale:
+₹<amount>.
+• Counts how many amounts are ≤ 0 using a loop with Predicate, and prints
+the count.
+• Finds the highest sales amount using a loop and prints it.
+• Calculates the average sales amount manually (sum ÷ count).
+• Sorts the list in ascending order and prints it.
+• Uses a Supplier<Integer> to return a sample new sales amount (e.g.,
+9999), and prints the supplied value.
+
+SOURCE CODE:
+
+package Exp_5_4;
+
+import java.util.*;
+import java.util.function.*;
+
+public class SalesAnalysis {
+
+    public static void main(String[] args) {
+
+        // Store all sales values
+        List<Integer> sales = new ArrayList<>(Arrays.asList(
+            1200, 4500, 3200, 2200, 5600, 7800, 3100, 1500, 8900, 4000));
+
+        System.out.println("===== Original Sales Data =====");
+        System.out.println(sales);
+
+        // 1️) Predicate to check if sales amount > 4000
+        Predicate<Integer> highSales = s -> s > 4000;
+        System.out.println("\n===== Sales greater than ₹4000 =====");
+        for (Integer s : sales) {
+            if (highSales.test(s)) {
+                System.out.println("₹" + s);
+            }
+        }
+
+        // 2️) Sort in descending order and print top 5 highest amounts
+        Collections.sort(sales, (a, b) -> b - a);
+        System.out.println("\n===== Top 5 Highest Sales =====");
+        for (int i = 0; i < 5; i++) {
+            System.out.println("₹" + sales.get(i));
+        }
+        //Sale:₹<amount>.
+        // 3️) Consumer to print each sales amount
+        Consumer<Integer> printSale = s -> System.out.println("Sale: ₹" +"<"+ s+">");
+        System.out.println("\n===== All Sales (Formatted) =====");
+        for (Integer s : sales) {
+            printSale.accept(s);
+        }
+
+        // 4️) Count how many sales are ≤ 0 using Predicate
+        Predicate<Integer> negative = s -> s <= 0;
+        int count = 0;
+        for (Integer s : sales) {
+            if (negative.test(s)) {
+                count++;
+            }
+        }
+        System.out.println("\n===== Number of Sales ≤ 0 =====");
+        System.out.println(count);
+
+        // 5️) Find the highest sales amount using a loop
+        int highest = sales.get(0);
+        for (Integer s : sales) {
+            if (s > highest) {
+                highest = s;
+            }
+        }
+        System.out.println("===== Highest Sales Amount =====");
+        System.out.println("₹" + highest);
+
+        // 6️) Calculate average sales amount manually
+        int sum = 0;
+        for (Integer s : sales) {
+            sum += s;
+        }
+        double average = (double) sum / sales.size();
+        System.out.println("===== Average Sales Amount =====");
+        System.out.println("₹" + average);
+
+        // 7️) Sort list in ascending order and print
+        Collections.sort(sales);
+        System.out.println("\n===== Sales in Ascending Order =====");
+        System.out.println(sales);
+
+        // 8️) Supplier to return a new sample sales amount
+        Supplier<Integer> newSaleSupplier = () -> 9999;
+        System.out.println("\n===== Supplied New Sales Amount =====");
+        System.out.println("₹" + newSaleSupplier.get());
+    }
+}
+
+
+OUTPUT:
+
+===== Original Sales Data =====
+[1200, 4500, 3200, 2200, 5600, 7800, 3100, 1500, 8900, 4000]
+
+===== Sales greater than ₹4000 =====
+₹4500
+₹5600
+₹7800
+₹8900
+
+===== Top 5 Highest Sales =====
+₹8900
+₹7800
+₹5600
+₹4500
+₹4000
+
+===== All Sales (Formatted) =====
+Sale: ₹<8900>
+Sale: ₹<7800>
+Sale: ₹<5600>
+Sale: ₹<4500>
+Sale: ₹<4000>
+Sale: ₹<3200>
+Sale: ₹<3100>
+Sale: ₹<2200>
+Sale: ₹<1500>
+Sale: ₹<1200>
+
+===== Number of Sales ≤ 0 =====
+0
+===== Highest Sales Amount =====
+₹8900
+===== Average Sales Amount =====
+₹4200.0
+
+===== Sales in Ascending Order =====
+[1200, 1500, 2200, 3100, 3200, 4000, 4500, 5600, 7800, 8900]
+
+===== Supplied New Sales Amount =====
+₹9999
